@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            /*background: #655;*/
+            /*background-image: radial-gradient(tan 20%, transparent 0), radial-gradient(tan 20%, transparent 0);*/
+            /*background-size: 30px 30px;*/
+            /*background-position: 0 0, 15px 15px;*/
+
+            /*background: red;*/
+            /*background: conic-gradient(yellow, blue, black);*/
+            /*min-height: 100%;*/
+
+            /*background: -moz-linear-gradient(0deg, yellow, red);*/
+            /*background: -o-linear-gradient(0deg, yellow, red);*/
+            /*background: -webkit-linear-gradient(0deg, yellow, red);*/
+            /*background: linear-gradient(90deg, yellow, red);*/
+
+            /*background: rgb(255, 128, 0);*/
+            /*background: -moz-linear-gradient(0deg, yellow, red);*/
+            /*background: -o-linear-gradient(0deg, yellow, red);*/
+            /*background: -webkit-linear-gradient(0deg, yellow, red);*/
+            /*background: linear-gradient(90deg, yellow, red);*/
+            font-size: 16px;
+
+            color: #cc0000;
+
+
+            /*background: url(tr.png) no-repeat top right / 2em 2em,*/
+                        /*url(br.png) no-repeat bottom right / 2em 2em,*/
+                        /*url(bl.png) no-repeat bottom left / 2em 2em;*/
+            background: url(tr.png) top right,
+                        url(br.png) bottom right,
+                        url(bl.png) bottom left;
+            background-size: 2em 2em;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            color: gray;
+        }
+
+        @supports (text-shadow: 0 0 .1em gray) {
+            h1 {
+                color: transparent;
+                text-shadow: 0 0 .1em gray;
+            }
+        }
+
+        /*button {*/
+            /*padding: 6px 16px;*/
+            /*border: 1px solid #446d88;*/
+            /*background: #58a linear-gradient(#77a0bb,#58a);*/
+            /*border-radius: 4px;*/
+            /*box-shadow: 0 1px 5px gray;*/
+            /*color: white;*/
+            /*text-shadow: 0 -1px 1px #335166;*/
+            /*!*font-size: 20px;*!*/
+            /*!*line-height: 30px;*!*/
+            /*!*font-size: 20px;*!*/
+            /*!*line-height: 1.5;*!*/
+            /*font-size: 125%;*/
+            /*line-height: 1.5;*/
+        /*}*/
+
+        /*button{*/
+            /*padding: .3em .8em;*/
+            /*border: 1px solid #446d88;*/
+            /*background: #58a linear-gradient(#77a0bb,#58a);*/
+            /*border-radius: .2em;*/
+            /*box-shadow: 0 .05em .25em gray;*/
+            /*color: white;*/
+            /*text-shadow: 0 -.05em .05em #335166;*/
+            /*font-size: 125%;*/
+            /*line-height: 1.5;*/
+        /*}*/
+
+        button{
+            padding: .3em .8em;
+            border: 1px solid rgba(0,0,0,.1);
+            background: #58a linear-gradient(hsla(0,0%,100%,.2),transparent);
+            border-radius: .2em;
+            box-shadow: 0 .05em .05em rgba(0,0,0,.5);
+            color: white;
+            text-shadow: 0 -.05em .05em rgba(0,0,0,.5);
+            font-size: 125%;
+            line-height: 1.5;
+        }
+        button.ok{
+            background-color: #6b0;
+        }
+        button.cancel{
+            background-color: #c00;
+        }
+        hr{
+            height: .5em;
+            background: currentColor;/*让所有的水平分割线（所有 <hr> 元素）自动与
+文本的颜色保持一致*/
+        }
+
+
+        .callout{
+            position: relative;
+            width: 40em;
+            padding: 1em;
+            border: .05em solid #ccc;
+            left: 2.5em;
+            top: .5em;
+            border-radius: .5em;
+        }
+
+        .callout::before{
+            content:' ';
+            position: absolute;
+            top: -.4em;
+            left:1em;
+            z-index: 1;
+            padding: .35em;
+            background: inherit;
+            border: inherit;
+            border-right: 0;
+            border-bottom: 0;
+            transform: rotate(45deg);
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>标题标题标题标题</h1>
+
+<button>Yes!</button>
+<button class="ok">OK</button>
+<button class="cancel">Cancel</button>
+
+<hr>
+<label for="">名称：</label>
+<input type="text" value="leaverou">
+<div class="callout">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores dolorum est expedita, iusto laboriosam magnam, modi nisi odit omnis quam reiciendis reprehenderit vitae voluptatum. Necessitatibus, sint voluptas. Commodi, molestiae, velit.
+</div>
+</body>
+</html>
