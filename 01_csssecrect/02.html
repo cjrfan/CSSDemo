@@ -3,8 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body {
+            background: #333;
+        }
+
+        div {
+            width: 200px;
+            height: 120px;
+            margin-bottom: 50px;
+            margin-left: 50px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        div.transparent-border {
+            /*半透明边框*/
+            border: 10px solid hsla(0, 0%, 100%, .5);
+            background: white;
+            background-clip: padding-box;
+        }
+
+        div.multi-border {
+            /*多重边框*/
+            /*background: yellowgreen;*/
+            /*box-shadow: 0 0 0 10px #655, 0 0 0 15px deeppink, 0 2px 5px 15px rgba(0, 0, 0, .6);*/
+
+            background: yellowgreen;
+            border: 10px solid #655;
+            outline: 2px dashed white;
+            outline-offset: -20px;
+        }
+
+        div.bg-position {
+            /*背景定位*/
+            /*background: url(code-pirate.svg) no-repeat bottom right #58a;*/
+            /*background-position: right 20px bottom 10px;*/
+
+            /*padding: 10px;*/
+            /*background: url(code-pirate.svg) no-repeat #58a;*/
+            /*background-position: right 10px bottom 10px;*/
+
+            /*padding: 10px;*/
+            /*background: url(code-pirate.svg) no-repeat #58a bottom right;!*100% 100%*!;*/
+            /*background-origin: content-box;*/
+
+            background: url(code-pirate.svg) no-repeat #58a;
+            background-position: calc(100% - 20px) calc(100% - 20px);
+
+        }
+
+        div.outer {
+            width: 200px;
+            height: auto;
+            background: #655;
+            padding: .8em;
+        }
+
+        div.outer > div {
+            width: auto;
+            height: auto;
+            background: tan;
+            border-radius: .8em;
+            padding: 1em;
+            margin: 0;
+        }
+
+        div.inner-round {
+            /*边框内圆角*/
+            background: tan;
+            border-radius: .8em;
+            padding: 1em;
+            outline: .6em solid #655;
+            box-shadow: 0 0 0 .4em #655;
+        }
+
+        div.stripes {
+            /*background: linear-gradient(#fb3,#58a);*/
+            /*background: linear-gradient(#fb3 20%,#58a 80%);*/
+            /*background: linear-gradient(#fb3 50%,#58a 50%);*/
+            /*background: linear-gradient(#fb3 30%,#58a 30%);*/
+            /*background: linear-gradient(#fb3 30%,#58a 0);*/
+            background: linear-gradient(#fb3 33.33%, #58a 0, #58a 66.66%, yellowgreen 0);
+            background-size: 100% 45px;
+            /*background-repeat: no-repeat;*/
+        }
+
+        .stripes2 {
+            background: linear-gradient(to right, #fb3 50%, #58a 0);
+            background-size: 45px 100%;
+        }
+    </style>
 </head>
 <body>
-
+<div class="transparent-border"></div>
+<div class="multi-border"></div>
+<div class="bg-position"></div>
+<div class="outer">
+    <div class="inner">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit .elit..elit..elit.
+    </div>
+</div>
+<div class="inner-round"></div>
+<div class="stripes"></div>
+<div class="stripes2"></div>
 </body>
 </html>
