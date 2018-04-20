@@ -1,0 +1,110 @@
+@charset "UTF-8";
+/*差数学函数*/
+/*波点图案*/
+.d1 {
+  width: 200px;
+  height: 150px;
+  background: #655;
+  background-image: radial-gradient(tan 30%, transparent 0), radial-gradient(tan 30%, transparent 0);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+/*棋盘图案*/
+.d2 {
+  width: 240px;
+  height: 180px;
+  background: #58a;
+  background-image: linear-gradient(45deg, tan 25%, transparent 0, transparent 75%, tan 0), linear-gradient(45deg, tan 25%, transparent 0, transparent 75%, tan 0);
+  background-position: 0 0, 15px 15px;
+  background-size: 30px 30px;
+}
+
+/*切角效果*/
+.d3 {
+  width: 250px;
+  height: 250px;
+  background: #58a;
+  background: linear-gradient(135deg, transparent 15px, #58a 0) top left, linear-gradient(225deg, transparent 5px, #58a 0) top right, linear-gradient(-45deg, transparent 15px, #58a 0) bottom right, linear-gradient(45deg, transparent 5px, #58a 0) bottom left;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+/*折角*/
+/*@mixin folded-corner($background, $size,
+$angle: 30deg) {
+  position: relative;
+  background: $background; !* 回退样式 *!
+  background: linear-gradient($angle - 180deg, transparent $size, $background 0);
+  border-radius: .5em;
+  $x: $size / sin($angle);
+  $y: $size / cos($angle);
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(to left bottom, transparent 50%, rgba(0, 0, 0, .2) 0, rgba(0, 0, 0, .4)) 100% 0 no-repeat;
+    width: $y;
+    height: $x;
+    transform: translateY($y - $x) rotate(2*$angle - 90deg);
+    transform-origin: bottom right;
+    border-bottom-left-radius: inherit;
+    box-shadow: -.2em .2em .3em -.1em rgba(0, 0, 0, .2);
+  }
+}*/
+body {
+  /* Showcase that the effect supports any backdrop */
+  background: repeating-linear-gradient(-45deg, #ddd 0, #ddd 25%, white 0, white 50%) 0/6px 6px;
+  box-sizing: border-box;
+  padding: 1em;
+  height: 100vh;
+}
+
+.note {
+  width: 30em;
+  height: 20em;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  padding: 2em;
+  margin: 0 1rem;
+  color: white;
+  font: 100%/1.6 Baskerville, Palatino, serif;
+  border-radius: .5em;
+  position: relative;
+  background: #58a;
+  /* Fallback */
+  background: linear-gradient(-155deg, transparent 1.5em, #58a 0);
+  border-radius: .5em;
+}
+.note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: linear-gradient(to left bottom, transparent 50%, rgba(0, 0, 0, 0.2) 0, rgba(0, 0, 0, 0.4)) 100% 0 no-repeat;
+  width: 1.5em/cos(25deg);
+  height: 1.5em/sin(25deg);
+  transform: translateY(1.5em/cos(25deg)-1.5em/sin(25deg)) rotate(-40deg);
+  transform-origin: bottom right;
+  border-bottom-left-radius: inherit;
+  box-shadow: -0.2em 0.2em 0.3em -0.1em rgba(0, 0, 0, 0.15);
+}
+
+/*文字3d*/
+h1 {
+  background-color: #58a;
+  padding: 10px;
+  color: #eee;
+  text-shadow: 0 1px #d5d5d5, 0 2px #bbbbbb, 0 3px #a2a2a2, 0 4px #888888, 0 4px 10px black;
+}
+
+h2 {
+  padding: 10px;
+  color: white;
+  background: #ac3939;
+  text-shadow: 1px 1px black, 2px 2px black, 3px 3px black, 4px 4px black, 5px 5px black, 6px 6px black, 7px 7px black, 8px 8px black;
+}
+
+/*# sourceMappingURL=mixin.css.map */

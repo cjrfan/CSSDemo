@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .t1 {
+            width: 15em;
+            font: 180%/1.4 Baskerville, serif;
+            border: 1px solid #999;
+            text-align: justify;
+            hyphens: auto; /*auto none manual*//*无效果*/
+        }
+
+        dd, dt {
+            display: inline;
+            margin: 0;
+        }
+
+        dd {
+            font-weight: bold;
+        }
+
+        dd + dt::before {
+            content: "\A";
+            white-space: pre; /*保留源代码中 的这些空白符和换行*/
+        }
+
+        dd + dd::before {
+            content: '， ';
+            font-weight: normal;
+            margin-left: -.25em;
+        }
+
+        tr:nth-child(even) {
+            background: rgba(0, 0, 0, .2);
+        }
+
+        pre {
+            max-width: 500px;
+            padding: .5em;
+            line-height: 1.5;
+            font-family: Consolas, Monaco, monospace;
+            background: hsl(20, 50%, 95%);
+            background-image: linear-gradient(rgba(0, 0, 0, .2) 50%, transparent 0);
+            background-size: auto 3em;
+            background-origin: content-box;
+        }
+
+        code {
+            font: inherit;
+        }
+
+        pre:nth-of-type(2) {
+            tab-size: 2;
+        }
+
+        pre:nth-of-type(3) {
+            tab-size: 4;
+        }
+
+        pre:nth-of-type(4) {
+            tab-size: 0;
+        }
+
+        .variant {
+            font: 200%/1.6 "Adobe Caslon Pro", Baskerville, serif;
+            font-variant-ligatures: common-ligatures discretionary-ligatures historical-ligatures; /*好像没效果*/
+        }
+
+        .amp {
+            font-family: Baskerville, "Goudy Old Style",
+            Garamond, Palatino, serif;
+            font-style: italic;
+        }
+
+        /*@font-face {*/
+        /*font-family: Ampersand;*/
+        /*src: url("fonts/ampersand.woff");*/
+        /*}*/
+        @font-face {
+            font-family: Ampersand;
+            src: local('Baskerville-Italic'),
+            local('GoudyOldStyleT-Italic'),
+            local('Palatino-Italic'),
+            local('BookAntiqua-Italic');
+            unicode-range: U+26;
+        }
+
+        h1 {
+            font-family: Ampersand, Helvetica, sans-serif; /*好像没效果*/
+        }
+
+        a[href] {
+            border-bottom: 1px solid gray;
+            text-decoration: none;
+        }
+
+        .under1 span {
+            display: inline-block;
+            border-bottom: 1px solid gray;
+            line-height: .9;
+        }
+
+        .under2 span {
+            /*background: linear-gradient(gray, gray) no-repeat;*/
+            /*background-size: 100% 1px;*/
+            /*background-position: 0 1.15em;*/
+            /*text-shadow: .05em 0 white, -.05em 0 white;*/
+
+            background: linear-gradient(90deg, gray 66%, transparent 0) repeat-x;
+            background-size: .5em 1px;
+            background-position: 0 1.15em;
+        }
+
+        p {
+            padding: .8em 1em;
+            background: hsl(210, 13%, 60%);
+            color: hsl(210, 13%, 30%);
+            text-shadow: 0 1px 1px hsla(0, 0%, 100%, .8);
+            /*text-shadow: 0 .03em .03em hsla(0,0%,100%,.8);*/
+        }
+
+        p + p {
+            background: hsl(210, 13%, 40%);
+            color: hsl(210, 13%, 75%);
+            text-shadow: 0 -1px 1px black;
+        }
+
+        .stroke {
+            background: deeppink;
+            color: white;
+            font: bold 200%/1 Rockwell, serif;
+        }
+
+        .stroke span {
+            /*text-shadow: 1px 1px black, -1px -1px black,*/
+            /*1px -1px black, -1px 1px black;*/
+            text-shadow: 0 0 1px black, 0 0 1px black,
+            0 0 1px black, 0 0 1px black,
+            0 0 1px black, 0 0 1px black;
+        }
+
+        h2 {
+            font: 500%/1 Rockwell, serif;
+            background: deeppink;
+            color: white;
+        }
+
+        h2 text {
+            fill: currentColor;
+        }
+
+        h2 svg {
+            overflow: visible
+        }
+
+        h2 use {
+            stroke: black;
+            stroke-width: 6;
+            stroke-linejoin: round;
+        }
+
+        h3 {
+            background: #203;
+            color: #ffc;
+            text-shadow: 0 0 .1em, 0 0 .3em;
+            padding: 20px;
+        }
+
+        h4 a {
+            padding: 20px;
+            background: #203;
+            color: white;
+            transition: 1s;
+            text-decoration: none;
+        }
+
+        h4 a:hover {
+            /*text-shadow: 0 0 .1em, 0 0 .3em;*/
+            /*color: transparent;*/
+            /*text-shadow: 0 0 .1em white, 0 0 .3em white;*/
+
+            filter: blur(.1em);
+        }
+
+        .css3d {
+            padding: 15px;
+            background: #58a;
+            color: white;
+            text-shadow: 0 1px hsl(0, 0%, 85%),
+            0 2px hsl(0, 0%, 80%),
+            0 3px hsl(0, 0%, 75%),
+            0 4px hsl(0, 0%, 70%),
+            0 5px hsl(0, 0%, 65%),
+            0 5px 10px black;
+            font: bold 500%/1 Rockwell, serif;
+        }
+
+        .css3d2 {
+            padding: 15px;
+            color: white;
+            background: hsl(0, 50%, 45%);
+            text-shadow: 1px 1px black, 2px 2px black,
+            3px 3px black, 4px 4px black,
+            5px 5px black, 6px 6px black,
+            7px 7px black, 8px 8px black;
+            font: bold 500%/1 Rockwell, serif;
+        }
+
+        .circular,.cir {
+            width: 20em;
+            height: 20em;
+            margin: 3em auto;
+        }
+
+        .circular svg,.cir svg {
+            display: block;
+            overflow: visible;
+            transition: 10s linear transform;
+        }
+
+        .circular path,.cir path {
+            fill: none;
+        }
+
+        .circular svg:hover,.cir svg:hover {
+            transform: rotate(-2turn);
+        }
+    </style>
+</head>
+<body>
+<div class="t1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque blanditiis, cum eligendi eum,
+    exercitationem fuga fugit harum hic inventore iste omnis quas quibusdam quidem quisquam quod sed soluta tempore vel!
+</div>
+<dl>
+    <dt>Name:</dt>
+    <dd>Lea Verou</dd>
+
+    <dt>Email:</dt>
+    <dd>lea@verou.me</dd>
+    <dd>leaverou@mit.edu</dd>
+
+    <dt>Location:</dt>
+    <dd>Earth</dd>
+</dl>
+<table cellpadding="0" cellspacing="0">
+    <tr>
+        <td>td1</td>
+        <td>td2</td>
+        <td>td3</td>
+        <td>td4</td>
+        <td>td5</td>
+    </tr>
+    <tr>
+        <td>td1</td>
+        <td>td2</td>
+        <td>td3</td>
+        <td>td4</td>
+        <td>td5</td>
+    </tr>
+    <tr>
+        <td>td1</td>
+        <td>td2</td>
+        <td>td3</td>
+        <td>td4</td>
+        <td>td5</td>
+    </tr>
+    <tr>
+        <td>td1</td>
+        <td>td2</td>
+        <td>td3</td>
+        <td>td4</td>
+        <td>td5</td>
+    </tr>
+    <tr>
+        <td>td1</td>
+        <td>td2</td>
+        <td>td3</td>
+        <td>td4</td>
+        <td>td5</td>
+    </tr>
+    <tr>
+        <td>td1</td>
+        <td>td2</td>
+        <td>td3</td>
+        <td>td4</td>
+        <td>td5</td>
+    </tr>
+    <tr>
+        <td>td1</td>
+        <td>td2</td>
+        <td>td3</td>
+        <td>td4</td>
+        <td>td5</td>
+    </tr>
+</table>
+<pre><code>//default tab-size;
+while (true) {
+	var d = new Date();
+	if (d.getDate()==1 &amp;&amp;
+	    d.getMonth()==3) {
+		alert("TROLOLOL");
+	}
+}</code></pre>
+<pre><code>//tab-size:2;
+while (true) {
+	var d = new Date();
+	if (d.getDate()==1 &amp;&amp;
+	    d.getMonth()==3) {
+		alert("TROLOLOL");
+	}
+}</code></pre>
+<pre><code>//tab-size:4;
+while (true) {
+	var d = new Date();
+	if (d.getDate()==1 &amp;&amp;
+	    d.getMonth()==3) {
+		alert("TROLOLOL");
+	}
+}</code></pre>
+<pre><code>//tab-size:0;
+while (true) {
+	var d = new Date();
+	if (d.getDate()==1 &amp;&amp;
+	    d.getMonth()==3) {
+		alert("TROLOLOL");
+	}
+}</code></pre>
+
+<div class="variant">
+    Common ligatures: fi ff fl ffi ffl <br/>
+    Discretionary ligatures: st ct
+</div>
+
+<div>HTML <span class="amp">&amp;</span> CSS</div>
+<h1>HTML & CSS</h1>
+
+<a href="#">下划线文本</a>
+<div class="under1">The only way to <span>get rid of a temp­ta­tion</span> is to <span>yield</span> to it.</div>
+<div class="under2">The only way to <span>get rid of a temp­ta­tion</span> is to <span>yield</span> to it.</div>
+
+<p>“The only way to get rid of a temp­ta­tion is to yield to it.”</p>
+<p>“The only way to get rid of a temp­ta­tion is to yield to it.”</p>
+
+<div class="stroke">
+    <span>CSS</span>
+</div>
+
+<h2>
+    <svg width="2em" height="1.2em">
+        <use xlink:href="#css"/>
+        <text id="css" y="1em">CSS</text>
+    </svg>
+</h2>
+
+<h3>Glow</h3>
+<h4><a>Glow</a></h4>
+
+<div class="css3d">css3d</div>
+<div class="css3d2">css3d</div>
+
+<div class="circular">
+    <svg viewBox="0 0 100 100">
+        <path d="M 0,50 a 50,50 0 1,1 0,1 z"
+              id="circle"/>
+        <text>
+            <textPath xlink:href="#circle">
+                circular reasoning works because
+            </textPath>
+        </text>
+    </svg>
+</div>
+
+<div class="cir">
+    circular reasoning works because
+</div>
+<script>
+    function $$(selector, context) {
+        context = context || document;
+        var elements = context.querySelectorAll(selector);
+        return Array.prototype.slice.call(elements);
+    }
+    $$('.cir').forEach(function(el) {
+        var NS = "http://www.w3.org/2000/svg";
+        var xlinkNS = "http://www.w3.org/1999/xlink";
+        var svg = document.createElementNS(NS, "svg");
+        var circle = document.createElementNS(NS, "path");
+        var text = document.createElementNS(NS, "text");
+        var textPath = document.createElementNS(NS, "textPath");
+        svg.setAttribute("viewBox", "0 0 100 100");
+        circle.setAttribute("d", "M0,50 a50,50 0 1,1 0,1z");
+        circle.setAttribute("id", "circle");
+        textPath.textContent = el.textContent;
+        textPath.setAttributeNS(xlinkNS, "xlink:href", "#circle");
+        text.appendChild(textPath);
+        svg.appendChild(circle);
+        svg.appendChild(text);
+        el.textContent = '';
+        el.appendChild(svg);
+    });
+</script>
+</body>
+</html>
