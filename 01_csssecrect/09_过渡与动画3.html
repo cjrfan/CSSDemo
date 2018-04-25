@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+        }
+
+        @keyframes caret {
+            50% {
+                border-right-color: transparent;
+            }
+        }
+
+        h1 {
+            font: normal 100% Consolas, Monaco, monospace;
+            /*width: 15ch;*/
+            width: 123ch;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: .05em solid;
+            animation: typing 16s steps(123), caret 1s steps(1) infinite;
+        }
+
+        @keyframes panoramic {
+            to {
+                background-position: 100% 0;
+            }
+        }
+
+        .panoramic {
+            width: 150px;
+            height: 150px;
+            background: url(2.jpg);
+            background-size: auto 100%;
+            animation: panoramic 10s linear infinite alternate;
+            animation-play-state: paused;
+        }
+
+        .panoramic:hover, .panoramic:focus {
+            animation-play-state: running;
+        }
+
+        /*@keyframes spin {
+            to {
+                transform: rotate(1turn);
+            }
+        }
+
+        .avatar {
+            animation: spin 3s infinite linear;
+            transform-origin: 50% 150px;
+        }
+
+        .avatar > img {
+            animation: inherit;
+            animation-direction: reverse;
+        }
+
+        .avatar {
+            width: 50px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .avatar > img {
+            display: block;
+            width: inherit;
+        }
+        .path {
+            width: 300px;
+            height: 300px;
+            padding: 20px;
+            border-radius: 50%;
+            background: #fb3;
+        }
+        */
+
+        .path {
+            width: 300px;
+            height: 300px;
+            padding: 20px;
+            border-radius: 50%;
+            background: #fb3;
+        }
+
+        .avatar {
+            display: block;
+            width: 50px;
+            margin: calc(50% - 25px) auto 0;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0turn)
+                translateY(-150px) translateY(50%)
+                rotate(1turn);
+            }
+            to {
+                transform: rotate(1turn)
+                translateY(-150px) translateY(50%)
+                rotate(0turn);
+            }
+        }
+        .avatar { animation: spin 3s infinite linear; }
+
+        .avatar > img {
+            animation: inherit;
+            animation-name: spin-reverse;
+        }
+
+    </style>
+</head>
+<body>
+<!--<h1>CSS is awesome!</h1>-->
+<h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores aut, deserunt dolore, dolorem
+    doloremque eos.</h1>
+
+<div class="panoramic"></div>
+
+<!--<div class="path">
+    <div class="avatar">
+        <img src="adamcatlace.jpg"/>
+    </div>
+</div>-->
+<div class="path">
+    <img class="avatar" src="adamcatlace.jpg"/>
+</div>
+<script>
+    function $$(selector, context) {
+        context = context || document;
+        var elements = context.querySelectorAll(selector);
+        return Array.prototype.slice.call(elements);
+    }
+    $$('h1').forEach(function (h1) {
+        var len = h1.textContent.length, s = h1.style;
+        s.width = len + 'ch';
+        s.animationTimingFunction = "steps(" + len + "),steps(1)";
+    });
+</script>
+</body>
+</html>

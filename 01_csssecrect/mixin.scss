@@ -151,3 +151,17 @@ h2 {
   background: hsl(0,50%,45%);
   text-shadow: text-retro();
 }
+
+
+@mixin n-items($n) {
+  &:first-child:nth-last-child(#{$n}),
+  &:first-child:nth-last-child(#{$n}) ~ & {
+    @content;
+  }
+}
+/* 调用时是这样的： */
+li {
+  @include n-items(4) {
+    /* 属性与值写在这里 */
+  }
+}

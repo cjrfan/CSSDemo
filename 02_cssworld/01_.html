@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*block水平元素与清除浮动*/
+        .box {
+            max-width: 500px;
+            padding: 10px;
+            background-color: #cd0000;
+        }
+
+        .box > img {
+            float: left;
+            width: 300px;
+        }
+
+        .clear:after {
+            content: '';
+            display: block; /*block table list-item(少用)*/
+            clear: both;
+        }
+
+        /*inline-table内联表格特性*/
+        .inline-table {
+            display: inline-table;
+            width: 128px;
+            margin-left: 10px;
+            border: 1px solid #cad5eb;
+        }
+
+        .inline-table > p {
+            display: table-cell;
+        }
+
+        /*table-layout:auto的表格*/
+        table {
+            width: 280px;
+            margin-top: 10px;
+            /*margin: 0 auto;*/
+            font-size: 12px;
+            text-align: left;
+            background: #a0b3d6;
+            border-spacing: 1px;
+        }
+
+        td {
+            padding: 2px 4px;
+            border: 3px solid #fff;
+            background: #f9f9f9;
+        }
+
+        /*nowrap不换行超出容器限制*/
+        .father {
+            width: 150px;
+            padding: 10px;
+            background-color: #cd0000;
+            white-space: nowrap;
+        }
+
+        .child {
+            display: inline-block;
+            padding: 5px;
+            background-color: #f0f3f9;
+        }
+
+        /*“外部尺寸”block元素的流动性*/
+        a, a:hover {
+            text-decoration: none;
+        }
+
+        .width {
+            width: 100%;
+        }
+
+        .nav {
+            background-color: #cd0000;
+            max-width: 300px;
+        }
+
+        .nav-a {
+            display: block;
+            margin: 0 10px;
+            padding: 9px 10px;
+            border-bottom: 1px solid #b70000;
+            border-top: 1px solid #de3636;
+            color: #fff;
+        }
+
+        .nav-a:first-child {
+            border-top: 0;
+        }
+
+        .nav-a + .nav-a + .nav-a {
+            border-bottom: 0;
+        }
+
+        /*按钮换行 只有button会，input 默认 white-space:pre; 得设为normal*/
+        .btn-box {
+            width: 240px;
+            margin: 20px auto;
+        }
+
+        /*文字少时居中显示，文字有多行时居左显示*/
+        .wrap-box {
+            width: 240px;
+            margin: 20px auto;
+            color: #fff;
+        }
+
+        .wrap {
+            padding: 10px;
+            background-color: #cd0000;
+            text-align: center;
+        }
+
+        .content {
+            display: inline-block;
+            text-align: left;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box clear">
+    <img src="1.jpg">
+</div>
+
+和文字平起平坐的表格：
+<div class="inline-table">
+    <p>第1列</p>
+    <p>第2列</p>
+</div>
+
+<table>
+    <tr>
+        <td>就1列就1列就1列就1列就1列</td>
+        <td>当父级relative，且宽度很小的时候，例如{position:relative; width:20px;}，absolute元素也会出现一柱擎天的情况；</td>
+        <td>当父级relative，且宽度很小的时候，例如{position:relative; width:20px;}，absolute元素也会出现一柱擎天的情况；</td>
+    </tr>
+</table>
+
+<div class="father">
+    <span class="child">恰如一江春水向东流，流到断崖也不回头</span>
+</div>
+
+<h4>无宽度，借助流动性</h4>
+<div class="nav">
+    <a href="" class="nav-a">导航1</a>
+    <a href="" class="nav-a">导航2</a>
+    <a href="" class="nav-a">导航3</a>
+</div>
+<h4>width:100%</h4>
+<div class="nav">
+    <a href="" class="nav-a width">导航1</a>
+    <a href="" class="nav-a width">导航2</a>
+    <a href="" class="nav-a width">导航3</a>
+</div>
+
+<div class="btn-box">
+    <button>按钮</button>
+</div>
+<div class="btn-box">
+    <button>文字多一点的按钮</button>
+</div>
+<div class="btn-box">
+    <button>文字很多的按钮文字很多的按钮文字很多的按钮文字很多的按钮文字很多的按钮文字很多的按钮文字很多的按钮文字很多的按钮文字很多的按钮文字很多的按钮</button>
+</div>
+
+<div class="wrap-box">
+    <div class="wrap">
+        <p id="conMore" class="content">文字内容</p>
+    </div>
+    <!-- 按钮 -->
+    <p>
+        <button id="btnMore">更多文字</button>
+    </p>
+</div>
+
+<script>
+    var btn = document.getElementById('btnMore'),
+        content = document.getElementById('conMore');
+
+    if (btn && content) {
+        btn.onclick = function () {
+            content.innerHTML += '-新增文字';
+        };
+    }
+</script>
+</body>
+</html>
