@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input, textarea, img, video, object {
+            box-sizing: border-box;
+        }
+
+        a, a:hover {
+            text-decoration: none;
+        }
+
+        .div {
+            width: 100px;
+            padding: 20px;
+            border: 20px solid;
+
+            /*margin: auto;*/
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .father {
+            width: 180px;
+            margin: 10px 0;
+        }
+
+        .son {
+            margin: 0 20px;
+            padding: 20px;
+            border: 1px solid;
+        }
+
+        .container {
+            width: 280px;
+            margin: 0 auto;
+            padding: 40px 0;
+            background-color: #f0f3f9;
+            -webkit-animation: width 2s infinite alternate;
+            animation: width 2s infinite alternate;
+        }
+
+        @keyframes width {
+            from {
+                width: 200px;
+            }
+            to {
+                width: 280px;
+            }
+        }
+
+        .textarea {
+            padding: 9px 8px;
+            border: 1px solid #d0d0d5;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+
+        .textarea > textarea {
+            width: 100%;
+            line-height: 20px;
+            padding: 0;
+            border: 0 none;
+            outline: 0 none;
+            background: none;
+            resize: none;
+            font-size: 1em;
+            font-family: inherit;
+        }
+
+        .box {
+            display: inline-block;
+            white-space: nowrap;
+            background-color: #cd0000;
+        }
+
+        .box img {
+            width: 300px;
+        }
+
+        .text {
+            display: inline-block;
+            width: 100%;
+            background-color: #34538b;
+            color: #fff;
+        }
+
+        .aa {
+            width: 300px;
+        }
+
+        .box1 {
+            margin: 1em 0;
+            color: #fff;
+            font-size: 16px;
+            height: 160px;
+            padding: 30px;
+            box-sizing: border-box;
+            background-color: #beceeb;
+            text-align: center;
+        }
+
+        .child {
+            height: 100%;
+            background: #cd0000;
+        }
+
+        .child:before {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        .rel {
+            position: relative;
+        }
+
+        .rel > .child {
+            width: 100%;
+            position: absolute;
+        }
+
+        .box2 {
+            display: inline-block;
+            position: relative;
+        }
+
+        .box2 img {
+            width: 300px;
+        }
+
+        .prev, .next {
+            width: 50%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            opacity: 0.5;
+            filter: alpha(opacity=30);
+        }
+
+        .prev {
+            left: 0;
+            background-color: #66bb00;
+            color: #66bb00;
+        }
+
+        .next {
+            right: 0;
+            background-color: #5588aa;
+            color: #5588aa;
+        }
+
+        .prev:active, .next:active {
+            opacity: .6;
+        }
+
+        .img1 {
+            max-width: 320px;
+        }
+
+        input[type="checkbox"] {
+            position: absolute;
+            clip: rect(0 0 0 0);
+        }
+
+        .element {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .25s;
+        }
+
+        :checked ~ .element {
+            max-height: 666px;
+        }
+
+        .check-out {
+            display: none;
+        }
+
+        .check-in, .check-out {
+            color: #34538b;
+            cursor: pointer;
+        }
+
+        :checked ~ .check-in {
+            display: none;
+        }
+
+        :checked ~ .check-out {
+            display: inline-block;
+        }
+
+        /*.box3:before{*/
+        /*content: url('1.jpg');*/
+        /*display: block;*/
+        /*width: 200px;*/
+        /*height: 200px;*/
+        /*}*/
+        .box4 {
+            width: 200px;
+            height: 200px;
+            margin: 10px 0 20px;
+            background-color: #beceeb;
+            overflow: hidden;
+            resize: both;
+        }
+
+        .box4 img {
+            width: 100%;
+            height: 100%;
+            background-color: #cd0000;
+            /* 图片自适应 可以尝试移动端*/
+            object-fit: fill;
+            object-fit: contain;
+            object-fit: cover;
+            object-fit: none;
+            object-fit: scale-down;
+        }
+    </style>
+</head>
+<body>
+<h3>011_设置元素宽度100，实际180</h3>
+<div class="div">
+    此时元素的offsetWidth是：<span id="divWidth"></span>
+</div>
+
+<h3>012_宽度分离</h3>
+<div class="father">
+    <div class="son"></div>
+</div>
+<!--<h3>宽度分离 box-sizing 解决替换元素宽度自适应问题</h3>-->
+<h3>013_textarea 宽度100%自适应</h3>
+<div class="container">
+    <div class="textarea">
+        <textarea rows="5" placeholder="色块是容器"></textarea>
+    </div>
+</div>
+<h3>014_不换行宽度计算</h3>
+<!--绝对定位的宽高百分比计算是相对于 padding box 的，也就是说会把 padding 大小值计算 在内，但是，非绝对定位元素则是相对于 content box 计算的-->
+<div class="box">
+    <img src="1.jpg">
+    <span class="text">红色背景是父级</span>
+</div>
+<h3>015_绝对定位和非绝对定位元素百分比值计算</h3>
+<div class="aa">
+    <div class="box1">
+        <div class="child">高度100px</div>
+    </div>
+    <div class="box1 rel">
+        <div class="child">高度160px</div>
+    </div>
+</div>
+<h3>016_任意大小图片的左右半区布局</h3>
+<div class="box2">
+    <a href="javascript:" class="prev" title="上一张">上一张</a>
+    <a href="javascript:" class="next" title="下一张">下一张</a>
+    <img src="1.jpg">
+</div>
+
+<h3>017_max-width覆盖width</h3>
+<img class="img1" src="1.jpg" style="width:480px!important;">
+
+<h3>018_展开收缩</h3>
+<input id="check" type="checkbox">
+<p>个人觉得，display:table-cell最强的应用是可以任意个数列表的等宽效果。 </p>
+<div class="element">
+    <p>display:table-cell其他一些应用，例如，两栏自适应布局，垂直居中效果等等都是可以通过其他技术手段模拟出来的，但是，根据列表个数自动等宽的效果，其他CSS是很难模拟的，尤其当需要兼容IE8浏览器的时候。</p>
+</div>
+<label for="check" class="check-in">更多↓</label>
+<label for="check" class="check-out">收起↑</label>
+<h3>019_图片资源的固有尺寸是无法改变</h3>
+<div class="box3"></div>
+<h3>020_图片自适应 object-fit</h3>
+<div class="box4">
+    <img src="1.jpg" alt="">
+</div>
+<script>
+    var eleShowWidth = document.getElementById('divWidth');
+    if (eleShowWidth) {
+        eleShowWidth.innerHTML = eleShowWidth.parentNode.offsetWidth;
+    }
+</script>
+</body>
+</html>

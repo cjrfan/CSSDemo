@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box1 {
+            width: 300px;
+            text-align: center;
+        }
+
+        .box1 img {
+            display: inline-block;
+            width: 300px;
+            height: 200px;
+            /* 隐藏Firefox alt文字 */
+            color: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .box1 img:not([src]) {
+            /* 隐藏Chrome alt文字以及银色边框 */
+            visibility: hidden;
+        }
+
+        .box1 img::before {
+            /* 淡蓝色占位背景 */
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f0f3f9;
+            visibility: visible;
+        }
+
+        .box1 img::after {
+            /* 黑色alt信息条 */
+            content: attr(alt);
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            line-height: 30px;
+            background-color: rgba(0, 0, 0, .5);
+            color: white;
+            font-size: 14px;
+            transform: translateY(100%);
+
+            transition: transform .2s;
+            visibility: visible;
+            text-align: center;
+        }
+
+        .box1 img:hover::after {
+            transform: translateY(0);
+        }
+
+        .box2 img {
+            width: 300px;
+        }
+
+        .box2 img:not([src]) {
+            content: url('1.jpg');
+        }
+
+        .emoji:hover {
+            content: url('laugh-tear.png');
+        }
+
+        h1 {
+            /*width: 180px;*/
+            /*height: 36px;*/
+            /*background: url('logo.png');*/
+            /*text-indent: -999px;*/
+
+            content: url('logo.png');
+        }
+
+        .box {
+            width: 200px;
+            padding: 10px;
+            border: 10px solid #cd0000;
+            margin: auto;
+        }
+
+        .box:empty {
+            border-style: dashed;
+        }
+
+        .box4 {
+            width: 256px;
+            height: 256px;
+            border-bottom: 1px solid #ccc;
+            text-align: justify;
+        }
+
+        .box4:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+        }
+
+        .box4:after {
+            content: '';
+            display: inline-block;
+            width: 100%;
+        }
+
+        .bar {
+            display: inline-block;
+            width: 20px;
+            height: 0;
+        }
+    </style>
+</head>
+<body>
+<h3>src缺省时img元素的alt信息展示</h3>
+<div class="box1">
+    <img alt="一张图" data-src="1.jpg">
+    <p>
+        <button>设置src属性显示图片</button>
+    </p>
+</div>
+<h3>img常规实现和content属性实现</h3>
+<div class="box2">
+    <img src="1.jpg">
+    <img>
+</div>
+<h3>利用content属性实现图片变化效果实例</h3>
+<div class="box3">
+    <img class="emoji" src="laugh.png" alt="">
+</div>
+<h3>普通元素content属性变成替换元素 </h3>
+<div>
+    <h1>《CSS 世界》</h1>
+</div>
+
+<h3>content生成内容无法影响:empty伪类 </h3>
+<div>
+    <h5>有内容</h5>
+    <div class="box">有内容</div>
+    <h5>无内容</h5>
+    <div class="box"></div>
+    <h5>空格也算内容</h5>
+    <div class="box"></div>
+    <h5>伪元素不算内容</h5>
+    <div class="box pseudo"></div>
+</div>
+
+<div class="wrap">
+    <div id="box" class="box4"><i class="bar"></i>
+        <i class="bar"></i>
+        <i class="bar"></i>
+        <i class="bar"></i>
+    </div>
+    <p>
+        <button id="button">再增加一条数据</button>
+    </p>
+</div>
+<script>
+    var btn1 = document.querySelector('.box1 button'),
+        img1 = document.querySelector('.box1 img');
+    if (btn1 && img1) {
+        var initValBtn = btn1.innerHTML;
+        var srcImg = img1.getAttribute('data-src');
+        img1.removeAttribute('data-src');
+
+        btn1.addEventListener('click', function () {
+            if (this.innerHTML == initValBtn) {
+                this.innerHTML = '移除src属性';
+                img1.setAttribute('src', srcImg);
+            } else {
+                this.innerHTML = initValBtn;
+                img1.removeAttribute('src');
+            }
+        }, false);
+    }
+</script>
+</body>
+</html>

@@ -4,7 +4,19 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        /*block水平元素与清除浮动*/
+        /*001_火狐异常*/
+        .active-btn {
+            display: inline-block;
+            background-color: #cd0000;
+            color: #fff;
+            padding: 8px 15px;
+        }
+
+        .active-btn:active {
+            background-color: #ae0000;
+        }
+
+        /*002_block水平元素与清除浮动*/
         .box {
             max-width: 500px;
             padding: 10px;
@@ -22,7 +34,7 @@
             clear: both;
         }
 
-        /*inline-table内联表格特性*/
+        /*003_inline-table内联表格特性*/
         .inline-table {
             display: inline-table;
             width: 128px;
@@ -34,7 +46,7 @@
             display: table-cell;
         }
 
-        /*table-layout:auto的表格*/
+        /*004_table-layout:auto的表格*/
         table {
             width: 280px;
             margin-top: 10px;
@@ -51,7 +63,7 @@
             background: #f9f9f9;
         }
 
-        /*nowrap不换行超出容器限制*/
+        /*005_nowrap不换行超出容器限制*/
         .father {
             width: 150px;
             padding: 10px;
@@ -65,7 +77,7 @@
             background-color: #f0f3f9;
         }
 
-        /*“外部尺寸”block元素的流动性*/
+        /*006_“外部尺寸”block元素的流动性*/
         a, a:hover {
             text-decoration: none;
         }
@@ -96,13 +108,13 @@
             border-bottom: 0;
         }
 
-        /*按钮换行 只有button会，input 默认 white-space:pre; 得设为normal*/
+        /*007_按钮自动换行 只有button会，input 默认 white-space:pre; 得设为normal*/
         .btn-box {
             width: 240px;
             margin: 20px auto;
         }
 
-        /*文字少时居中显示，文字有多行时居左显示*/
+        /*008_文字少时居中显示，文字有多行时居左显示*/
         .wrap-box {
             width: 240px;
             margin: 20px auto;
@@ -120,19 +132,95 @@
             text-align: left;
         }
 
+        /*009_凹凸图形效果*/
+        .ao, .tu {
+            display: inline-block;
+            width: 0;
+            font-size: 14px;
+            line-height: 18px;
+            margin: 35px;
+            color: #fff;
+        }
+
+        .ao:before, .tu:before {
+            outline: 2px solid red;
+            font-family: Consolas, Monaco, monospace;
+        }
+
+        .ao:before {
+            content: 'love你love';
+        }
+
+        .tu {
+            direction: rtl;
+        }
+
+        .tu:before {
+            content: '我love你';
+        }
+
+        /*010_最大宽度与iScroll水平滚动*/
+        .roll {
+            width: 300px;
+            height: 200px;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roll > ul {
+            position: absolute;
+            padding: 0;
+            white-space: nowrap;
+            list-style: none;
+        }
+
+        .roll li {
+            display: inline-block;
+        }
+
+        .roll li img {
+            width: 300px;
+            height: 200px;
+        }
+
+        .roll li::before {
+            content: attr(data-index);
+            position: absolute;
+            margin: 5px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, .5);
+            width: 22px;
+            height: 22px;
+            line-height: 22px;
+            text-align: center;
+            color: #fff;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
+<h3>001_火狐浏览器异常，其他浏览器正常。Firefox 认为:active 发生在 mousedown 事件之后</h3>
+<div>
+    正常情况：
+    <a href="javascript:" class="active-btn">按下</a>
+    包含JS：
+    <a href="javascript:" id="button" class="active-btn">按下</a>
+</div>
+
+<h3>002_block水平元素与清除浮动</h3>
 <div class="box clear">
     <img src="1.jpg">
 </div>
 
+<h3>003_inline-table内联表格特性</h3>
 和文字平起平坐的表格：
 <div class="inline-table">
     <p>第1列</p>
     <p>第2列</p>
 </div>
 
+<h3>004_table-layout:auto的表格</h3>
 <table>
     <tr>
         <td>就1列就1列就1列就1列就1列</td>
@@ -141,23 +229,25 @@
     </tr>
 </table>
 
+<h3>005_nowrap不换行超出容器限制</h3>
 <div class="father">
     <span class="child">恰如一江春水向东流，流到断崖也不回头</span>
 </div>
-
+<h3>006_“外部尺寸”block元素的流动性</h3>
 <h4>无宽度，借助流动性</h4>
 <div class="nav">
     <a href="" class="nav-a">导航1</a>
     <a href="" class="nav-a">导航2</a>
     <a href="" class="nav-a">导航3</a>
 </div>
-<h4>width:100%</h4>
+<h4>width:100%，设定宽度，尺寸超出</h4>
 <div class="nav">
     <a href="" class="nav-a width">导航1</a>
     <a href="" class="nav-a width">导航2</a>
     <a href="" class="nav-a width">导航3</a>
 </div>
 
+<h3>007_按钮自动换行 只有button会，input 默认 white-space:pre; 得设为normal</h3>
 <div class="btn-box">
     <button>按钮</button>
 </div>
@@ -168,17 +258,40 @@
     <button>文字很多的按钮文字很多的按钮文字很多的按钮文字很多的按钮文字很多的按钮文字很多的按钮文字很多的按钮文字很多的按钮文字很多的按钮文字很多的按钮</button>
 </div>
 
+<h3>008_文字少时居中显示，文字有多行时居左显示</h3>
 <div class="wrap-box">
     <div class="wrap">
         <p id="conMore" class="content">文字内容</p>
     </div>
-    <!-- 按钮 -->
     <p>
         <button id="btnMore">更多文字</button>
     </p>
 </div>
 
+<h3>009_凹凸图形效果</h3>
+<div>
+    <span class="ao"></span>
+    <span class="tu"></span>
+</div>
+<h3>010_最大宽度与iScroll水平滚动</h3>
+<div id="roll" class="roll">
+    <ul>
+        <li data-index="1"><img src="1.jpg"></li>
+        <li data-index="2"><img src="1.jpg"></li>
+        <li data-index="3"><img src="1.jpg"></li>
+        <li data-index="4"><img src="1.jpg"></li>
+        <li data-index="5"><img src="1.jpg"></li>
+    </ul>
+</div>
+<script src="iscroll.js"></script>
 <script>
+    var button = document.getElementById("button");
+    if (button.addEventListener) {
+        button.addEventListener("mousedown", function (event) {
+            event.preventDefault();
+        });
+    }
+
     var btn = document.getElementById('btnMore'),
         content = document.getElementById('conMore');
 
@@ -187,6 +300,12 @@
             content.innerHTML += '-新增文字';
         };
     }
+
+    new IScroll('#roll', {
+        scrollbars: true,
+        scrollX: true,
+        scrollY: false
+    });
 </script>
 </body>
 </html>
