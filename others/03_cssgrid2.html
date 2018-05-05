@@ -17,7 +17,7 @@
             border: 1px solid #fff;
             border-radius: .2rem;
             font-size: .8em;
-            min-height: 7rem;
+            min-height: 3rem;
             padding: .75rem;
             color: #f0f0f3;
             background-color: #e91e63;
@@ -47,6 +47,76 @@
             grid-row: row-start 2 / row-end 3;
             grid-column: col-start / col-start 3;
             background-color: #5b50ff;
+        }
+
+        .box4 {
+            display: grid;
+            grid-template-rows: 150px 400px 100px;
+            grid-template-columns: 1fr 200px;
+            grid-template-areas: "header header" "content sidebar" "footer footer";
+        }
+
+        .box4 header {
+            grid-row-start: header;
+            grid-row-end: header;
+            grid-column-start: header;
+            grid-column-end: header;
+            background-color: #5950ff;
+        }
+
+        .box4 main {
+            grid-area: content;
+            background-color: #e91e63;
+        }
+
+        .box4 aside {
+            grid-area: sidebar;
+            background-color: #66bb00;
+        }
+
+        .box4 footer {
+            grid-row: footer;
+            grid-column: footer;
+            background-color: #cd0000;
+        }
+
+        .box5 {
+            display: grid;
+            /*grid-template-columns: 30px 60px;*/
+            /*grid-auto-flow: column;*/
+            /*grid-auto-columns: 1fr;*/
+
+            /*grid-template-rows:    70px;*/
+            /*grid-template-columns: repeat(2, 1fr);*/
+            /*grid-auto-rows:        140px;*/
+
+            /*grid-auto-flow: row;*/
+            grid-auto-flow: column;
+        }
+
+        .bc-teal {
+            background-color: #66bb00;
+        }
+
+        .box6 {
+            display: grid;
+            grid-template-rows: [outer-start] 1fr [inner-start] 1fr [inner-end] 1fr [outer-end];
+            grid-template-columns: [outer-start] 1fr [inner-start] 1fr [inner-end] 1fr [outer-end];
+        }
+
+        .box6 .item-i {
+            grid-area: inner;
+            background-color: #66bb00;
+        }
+
+        .box7 {
+            display: grid;
+            grid-template-areas: "header header" "content sidebar" "footer footer";
+            grid-template-rows: 80px 1fr 40px;
+            grid-template-columns: 1fr 200px;
+        }
+        .box7 .item1{
+            /*grid*/
         }
     </style>
 </head>
@@ -78,5 +148,66 @@
 </div>
 <h3>用网格区域命名和定位项目 <br>
     如同网格线命名，可以用属性grid-template-areas给网格区域命名。网格区域名称可以用来定位网格项目。</h3>
+<h5>grid-template-areas: "header header"<br>
+    "content sidebar"<br>
+    "footer footer";<br>
+    grid-template-rows: 150px 1fr 100px;<br>
+    grid-template-columns: 1fr 200px;<br>
+    一组区域名称要放在单引号或双引号内，每一个名称之间以空格分隔。<br>
+
+    每一组名称定义一行，每一个名称定义一列。<br>
+
+    grid-row-start: header;<br>
+    grid-row-end: header;<br>
+    grid-column-start: header;<br>
+    grid-column-end: header;<br>
+    网格区域名称可以用在属性grid-row-start, grid-row-end, grid-column-start, 和 grid-column-end的值中，用来定位项目。<br>
+
+    grid-row: footer;<br>
+    grid-column: footer;<br>
+    网格区域名称也可以用于简写属性grid-row 和 grid-column的值中。<br>
+
+    grid-area: sidebar;<br>
+    网格区域名称也可以用于简写属性grid-area的值中。</h5>
+<div class="box box4">
+    <header class="item">1</header>
+    <main class="item">2</main>
+    <aside class="item">3</aside>
+    <footer class="item">4</footer>
+</div>
+
+<h3>隐式网格 <br>
+    隐式网格用来在显式网格之外定位项目。有时在显示网格中没有足够的空间，或者是要在显示网格之外定位项目就要用到隐式网格。这时可以把这些项目放置在隐式网格中。<br>
+
+    隐式网格可以通过属性 grid-auto-rows, grid-auto-columns, 和 grid-auto-flow 来定义。</h3>
+<h5></h5>
+<div class="box box5">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item bc-teal">3</div>
+    <div class="item bc-teal">4</div>
+    <div class="item bc-teal">5</div>
+</div>
+<h3>隐式命名的网格区域
+    网格线名称可以任意指定，但分配以 -start 和 -end 结尾的名字有额外的益处，这样隐式地创建了具名网格区域，该名称可以用于项目定位。</h3>
+<h5></h5>
+<div class="box box6">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item item-i">inner</div>
+    <div class="item">6</div>
+    <div class="item">7</div>
+    <div class="item">8</div>
+    <div class="item">9</div>
+</div>
+<h3>隐式命名的网格线</h3>
+<div class="box box7">
+    <div class="item item1">header</div>
+    <main class="item">content</main>
+    <aside class="item">sidebar</aside>
+    <footer class="item">footer</footer>
+</div>
 </body>
 </html>
